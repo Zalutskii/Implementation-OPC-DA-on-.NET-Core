@@ -1,13 +1,12 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Core
+namespace Core.Interfaces
 {
 	/// <summary>
 	/// Manages the definition of the IEnumString interface.
 	/// </summary>
-	[Guid("00000101-0000-0000-C000-000000000046"), ComImport, InterfaceType((short)1)]
+	[Guid("00000101-0000-0000-C000-000000000046"), ComImport, InterfaceType(1)]
 	public interface IEnumString
 	{
 		/// <summary>

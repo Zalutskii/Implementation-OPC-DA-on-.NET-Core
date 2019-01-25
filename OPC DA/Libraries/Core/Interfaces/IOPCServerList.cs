@@ -2,10 +2,10 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Core
+namespace Core.Interfaces
 {
-	[Guid("13486D50-4821-11D2-A494-3CB306C10000"), ComImport, InterfaceType((short)1)]
-	interface IOPCServerList
+	[Guid("13486D50-4821-11D2-A494-3CB306C10000"), ComImport, InterfaceType(1)]
+	internal interface IOPCServerList
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		void EnumClassesOfCategories(

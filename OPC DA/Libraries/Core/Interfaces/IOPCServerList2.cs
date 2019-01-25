@@ -2,10 +2,10 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Core
+namespace Core.Interfaces
 {
-	[Guid("9DD0B56C-AD9E-43EE-8305-487F3188BF7A"), ComImport, InterfaceType((short)1)]
-	interface IOPCServerList2
+	[Guid("9DD0B56C-AD9E-43EE-8305-487F3188BF7A"), ComImport, InterfaceType(1)]
+	internal interface IOPCServerList2
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		void EnumClassesOfCategories(
@@ -27,5 +27,4 @@ namespace Core
 			[In, MarshalAs(UnmanagedType.LPWStr)] string progId,
 			[Out] out Guid clsid);
 	}
-
 }

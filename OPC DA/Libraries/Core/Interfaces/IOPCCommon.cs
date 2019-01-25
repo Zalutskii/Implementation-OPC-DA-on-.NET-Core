@@ -2,12 +2,12 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Core
+namespace Core.Interfaces
 {
 	/// <summary>
 	/// OPC Server common interface.
 	/// </summary>
-	[Guid("F31DFDE2-07B6-11D2-B2D8-0060083BA1FB"), ComImport, InterfaceType((short)1)]
+	[Guid("F31DFDE2-07B6-11D2-B2D8-0060083BA1FB"), ComImport, InterfaceType(1)]
 	public interface IOPCCommon
 	{
 		/// <summary>
@@ -38,7 +38,7 @@ namespace Core
 		/// Converts error code to localized message based on current OPC Server locale.
 		/// </summary>
 		/// <param name="error">Error code.</param>
-		/// <param name="@string">Message for specified error code.</param>
+		/// <param name="string">Message for specified error code.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		void GetErrorString(
 			[In] int error,

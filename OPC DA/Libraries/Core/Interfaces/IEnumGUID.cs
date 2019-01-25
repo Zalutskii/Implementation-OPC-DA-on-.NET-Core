@@ -2,10 +2,10 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Core
+namespace Core.Interfaces
 {
-	[Guid("0002E000-0000-0000-C000-000000000046"), ComImport, InterfaceType((short)1)]
-	interface IEnumGUID
+	[Guid("0002E000-0000-0000-C000-000000000046"), ComImport, InterfaceType(1)]
+	internal interface IEnumGUID
 	{
 		[PreserveSig]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
