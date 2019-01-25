@@ -2,10 +2,11 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Core.Interfaces
+namespace OPCDataAccessLibraries.Interfaces
 {
 	/// <summary>
 	/// OPC Server common interface.
+	/// Other OPC Servers such as alarms and events share this interface design. It provides the ability to set and query a LocaleID that would be in effect for the particular client/server session. That is, as with a Group definition, the actions of one client do not affect any other clients.
 	/// </summary>
 	[Guid("F31DFDE2-07B6-11D2-B2D8-0060083BA1FB"), ComImport, InterfaceType(1)]
 	public interface IOPCCommon

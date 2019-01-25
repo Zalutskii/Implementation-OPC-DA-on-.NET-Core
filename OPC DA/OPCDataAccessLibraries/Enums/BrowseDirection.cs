@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DataAccessClient
+﻿namespace OPCDataAccessLibraries.Enums
 {
 	/// <summary>
 	/// The direction to browse OPC Server namespace.
