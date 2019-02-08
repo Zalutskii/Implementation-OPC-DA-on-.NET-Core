@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace OPCDataAccessLibraries.BaseEntity
+namespace OPCDataAccessLibraries.BaseEntity.EventArgs
 {
+	/// <inheritdoc />
 	/// <summary>
 	/// Arguments for data writing events.
 	/// </summary>

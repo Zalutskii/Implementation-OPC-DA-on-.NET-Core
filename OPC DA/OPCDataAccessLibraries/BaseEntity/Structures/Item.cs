@@ -8,33 +8,33 @@ namespace OPCDataAccessLibraries.BaseEntity.Structures
 	public struct Item
 	{
 		/// <summary>
-		/// Item name.
+		/// Item tag.
 		/// </summary>
-		public string ItemId { get; }
+		public string Tag { get; set; }
 
 		/// <summary>
 		/// Item client ID.
 		/// </summary>
-		public int ClientId { get; }
+		public int ClientId { get; set; }
 
 		/// <summary>
 		/// Requested value data type.
 		/// </summary>
-		public VarEnum RequestedDataType { get; }
+		public VarEnum RequestedDataType { get; set; }
 
 		/// <summary>
 		/// Requested value data sub type (if type is array).
 		/// </summary>
-		public VarEnum RequestedDataSubType { get; }
+		public VarEnum RequestedDataSubType { get; set; }
 
 		/// <summary>
 		/// Item read mode.
 		/// </summary>
-		public bool Active { get; }
+		public bool Active { get; set; }
 
 		/// <summary>
 		/// Item access path.
 		/// </summary>
-		public string AccessPath { get; }
+		public string AccessPath { get; set; }
 	}
 }

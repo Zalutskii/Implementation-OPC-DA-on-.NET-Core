@@ -5,7 +5,7 @@ using OPCDataAccessLibraries.BaseEntity.Structures;
 
 namespace OPCDataAccessLibraries.BaseEntity
 {
-	internal class ItemValueReader
+	internal static class ItemValueReader
 	{
 		public static ItemValue[] Read(int[] clientIds, IntPtr values, short[] qualities, long[] timeStamps, int[] errors)
 		{
@@ -41,9 +41,8 @@ namespace OPCDataAccessLibraries.BaseEntity
 				var result = new ItemValue[size];
 				for (var i = 0; i < size; i++)
 				{
-					// ReSharper disable UseObjectOrCollectionInitializer
+					// ReSharper disable once UseObjectOrCollectionInitializer
 					result[i] = new ItemValue();
-					// ReSharper restore UseObjectOrCollectionInitializer
 
 					// uint hClient;
 					result[i].ClientId = Marshal.ReadInt32(dataPtr, position);

@@ -16,13 +16,19 @@ namespace OPCDataAccessLibraries.BaseEntity
         /// <summary>
         /// Category UUID of OPC DA 1.0.
         /// </summary>
-        public static readonly Guid Version10 = new Guid("{63D5F430-CFE4-11d1-B2C8-0060083BA1FB}");
-
+        public static readonly Guid VersionOpc10 = new Guid("{63D5F430-CFE4-11d1-B2C8-0060083BA1FB}");
         /// <summary>
         /// Category UUID of OPC DA 2.0.
         /// </summary>
-        public static readonly Guid Version20 = new Guid("{63D5F432-CFE4-11d1-B2C8-0060083BA1FB}");
-
+        public static readonly Guid VersionPoc20 = new Guid("{63D5F432-CFE4-11d1-B2C8-0060083BA1FB}");
+        /// <summary>
+        /// Category UUID of OPC DA 3.0.
+        /// </summary>
+        public static readonly Guid VersionOpc30 = new Guid("{CC603642-66D7-48f1-B69A-B625E73652D7}");
+        /// <summary>
+        /// Category UUID of XML DA 1.0.
+        /// </summary>
+        public static readonly Guid VersionXml10 = new Guid("{3098EDA4-A006-48b2-A27F-247453959408}");
         /// <inheritdoc />
         /// <summary>
         /// Connects to specified OPC DA Server.
@@ -120,8 +126,8 @@ namespace OPCDataAccessLibraries.BaseEntity
                 throw new ArgumentNullException(nameof(name));
 
             var id = typeof(IOPCItemMgt).GUID;
-
-            _server.AddGroup(
+			
+			_server.AddGroup(
                 name,
                 active ? 1 : 0,
                 updateRate,

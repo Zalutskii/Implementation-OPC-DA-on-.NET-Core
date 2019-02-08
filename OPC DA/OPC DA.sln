@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28516.95
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCDataAccessLibraries", "OPCDataAccessLibraries\OPCDataAccessLibraries.csproj", "{900FFC7B-709C-4601-A53A-0ECFD5108F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OPCDataAccessLibraries", "OPCDataAccessLibraries\OPCDataAccessLibraries.csproj", "{900FFC7B-709C-4601-A53A-0ECFD5108F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetOPCData", "GetOPCData\GetOPCData.csproj", "{770E21AC-0399-43E1-90FF-0225E579A8E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,11 +17,13 @@ Global
 		{900FFC7B-709C-4601-A53A-0ECFD5108F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{900FFC7B-709C-4601-A53A-0ECFD5108F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{900FFC7B-709C-4601-A53A-0ECFD5108F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{770E21AC-0399-43E1-90FF-0225E579A8E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{770E21AC-0399-43E1-90FF-0225E579A8E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{770E21AC-0399-43E1-90FF-0225E579A8E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{770E21AC-0399-43E1-90FF-0225E579A8E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1AD2276F-AA83-4488-86CA-695F6EB7C6BB}

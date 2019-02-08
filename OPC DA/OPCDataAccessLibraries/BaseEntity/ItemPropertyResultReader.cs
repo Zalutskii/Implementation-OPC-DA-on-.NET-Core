@@ -5,7 +5,7 @@ using OPCDataAccessLibraries.BaseEntity.Structures;
 
 namespace OPCDataAccessLibraries.BaseEntity
 {
-	internal class ItemPropertyResultReader
+	internal static class ItemPropertyResultReader
 	{
 		public static ItemProperty[] ReadItemProperties(uint size, IntPtr idsPtr, IntPtr descriptionsPtr, IntPtr typesPtr)
 		{

@@ -1,12 +1,10 @@
-using System;
-
-namespace OPCDataAccessLibraries.BaseEntity
+namespace OPCDataAccessLibraries.BaseEntity.EventArgs
 {
     /// <inheritdoc />
     /// <summary>
     /// Arguments for completion events.
     /// </summary>
-    public class CompleteEventArgs : EventArgs
+    public class CompleteEventArgs : System.EventArgs
     {
         /// <inheritdoc />
         /// <summary>

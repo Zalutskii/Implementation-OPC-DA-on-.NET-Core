@@ -25,7 +25,7 @@ namespace OPCDataAccessLibraries.BaseEntity
 				position += IntPtr.Size;
 
 				// string szItemID;
-				var itemId = Marshal.StringToCoTaskMemUni(item.ItemId);
+				var itemId = Marshal.StringToCoTaskMemUni(item.Tag);
 				_stringsToClear.Add(itemId);
 				Marshal.WriteIntPtr(Items, position, itemId);
 				position += IntPtr.Size;

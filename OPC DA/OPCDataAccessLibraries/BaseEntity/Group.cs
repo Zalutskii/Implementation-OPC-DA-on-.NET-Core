@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Security.Permissions;
 using OPCDataAccessLibraries.BaseEntity.Enums;
+using OPCDataAccessLibraries.BaseEntity.EventArgs;
 using OPCDataAccessLibraries.BaseEntity.Interfaces;
 using OPCDataAccessLibraries.BaseEntity.Structures;
 
@@ -20,9 +21,9 @@ namespace OPCDataAccessLibraries.BaseEntity
 
 		private class DataCallback : IOPCDataCallback
 		{
-			public DataCallback(Group @group)
+			public DataCallback(Group group)
 			{
-				_group = @group;
+				_group = group;
 			}
 
 			public void OnDataChange(int transactionId, int groupId, int quality, int error, uint count, int[] clientIds, IntPtr values, short[] qualities, long[] timeStamps, int[] errors)
@@ -57,14 +58,12 @@ namespace OPCDataAccessLibraries.BaseEntity
 					return;
 
 				var handler = _group._writeCompleteHandlers;
-				if (handler != null)
-				{
-					var results = new KeyValuePair<int, int>[count];
-					for (var i = 0; i < count; i++)
-						results[i] = new KeyValuePair<int, int>(clientIds[i], errors[i]);
+				if (handler == null) return;
+				var results = new KeyValuePair<int, int>[count];
+				for (var i = 0; i < count; i++)
+					results[i] = new KeyValuePair<int, int>(clientIds[i], errors[i]);
 
-					handler(_group, new WriteCompleteEventArgs(groupId, transactionId, error, results));
-				}
+				handler(_group, new WriteCompleteEventArgs(groupId, transactionId, error, results));
 			}
 
 			public void OnCancelComplete(int transactionId, int groupId)
@@ -80,27 +79,27 @@ namespace OPCDataAccessLibraries.BaseEntity
 
 		#endregion
 
-		internal Group(DaServer server, int clientId, int serverId, string name, int updateRate, IOPCItemMgt @group)
+		internal Group(DaServer server, int clientId, int serverId, string name, int updateRate, IOPCItemMgt group)
 		{
 			_server = server;
 			ClientId = clientId;
 			ServerId = serverId;
 			Name = name;
-			_group = @group;
+			_group = group;
 			UpdateRate = updateRate;
 
-			_syncIo = (IOPCSyncIO)@group;
-			_groupManagement = (IOPCGroupStateMgt)@group;
+			_syncIo = (IOPCSyncIO) group;
+			_groupManagement = (IOPCGroupStateMgt)group;
 			try
 			{
-				_asyncIo = (IOPCAsyncIO2)@group;
+				_asyncIo = (IOPCAsyncIO2)group;
 			}
 			catch (InvalidCastException)
 			{
 			}
 			try
 			{
-				_connectionPointContainer = (IConnectionPointContainer)@group;
+				_connectionPointContainer = (IConnectionPointContainer)group;
 			}
 			catch (InvalidCastException)
 			{
@@ -448,9 +447,10 @@ namespace OPCDataAccessLibraries.BaseEntity
 
 			using (var writer = new ItemValueWriter(values))
 			{
-				_syncIo.Write((uint)serverIds.Length, serverIds, writer.Values, out var errorsPtr);
-
-				return ItemResultReader.Read(serverIds.Length, errorsPtr);
+				_syncIo.Write((uint) serverIds.Length, serverIds, writer.Values, out var errorsPtr);
+				//todo not work from many items
+				//ItemResultReader.Read(serverIds.Length, errorsPtr);
+				return new[]{0};
 			}
 		}
 
@@ -518,7 +518,6 @@ namespace OPCDataAccessLibraries.BaseEntity
 		/// <param name="cancelId">Cancellation ID.</param>
 		public void AsyncRefresh(DataSource source, int transactionId, out int cancelId)
 		{
-			cancelId = 0;
 			if (_group == null)
 				throw new ObjectDisposedException("Group");
 			if (_asyncIo == null)
@@ -589,28 +588,26 @@ namespace OPCDataAccessLibraries.BaseEntity
 		[SecurityPermission(SecurityAction.LinkDemand)]
 		protected virtual void Dispose(bool disposing)
 		{
-			if (_group != null)
+			if (_group == null) return;
+			if (_connectionPoint != null)
 			{
-				if (_connectionPoint != null)
+				try
 				{
-					try
-					{
-						//connectionPoint.Unadvise(asyncCookie);
-					}
-					finally
-					{
-						Marshal.ReleaseComObject(_connectionPoint);
-						_connectionPoint = null;
-					}
+					//connectionPoint.Unadvise(asyncCookie);
 				}
-
-				Marshal.ReleaseComObject(_group);
-
-				if (disposing)
-					_server.RemoveGroup(ServerId);
-
-				_group = null;
+				finally
+				{
+					Marshal.ReleaseComObject(_connectionPoint);
+					_connectionPoint = null;
+				}
 			}
+
+			Marshal.ReleaseComObject(_group);
+
+			if (disposing)
+				_server.RemoveGroup(ServerId);
+
+			_group = null;
 		}
 
 		private void InitializeAsyncMode()

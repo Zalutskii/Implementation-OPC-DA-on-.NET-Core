@@ -10,8 +10,6 @@ namespace OPCDataAccessLibraries.BaseEntity
 	public class ServerProperties : INotifyPropertyChanged
 	{
 		[Category("Basic")]
-		[Description("Инженерное значение параметра")]
-		[DisplayName("")]
 		public Guid Id { get; set; }
 
 		[Category("Basic")]
@@ -87,8 +85,7 @@ namespace OPCDataAccessLibraries.BaseEntity
 		public void Refreshed()
 		{
 			var handler = PropertyChanged;
-			if (handler != null)
-				handler(this, new PropertyChangedEventArgs(string.Empty));
+			handler?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
 		}
 
 	}

@@ -1,6 +1,6 @@
 ﻿using OPCDataAccessLibraries.BaseEntity.Structures;
 
-namespace OPCDataAccessLibraries.BaseEntity
+namespace OPCDataAccessLibraries.BaseEntity.EventArgs
 {
 	/// <inheritdoc />
 	/// <summary>
